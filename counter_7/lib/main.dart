@@ -85,13 +85,13 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // Untuk memunculkan text sesuai result
   Text showTextIndicator() {
-    // Jika hasil sama dengan genap
+    // Jika hasil sama dengan GANJIL
     if (result == 'GANJIL') {
       return Text(
         result,
         style: const TextStyle(color: Colors.blue),
       );
-      // Jika hasil sama dengan ganjil
+      // Jika hasil sama dengan GENAP
     } else {
       return Text(
         result,
