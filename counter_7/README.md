@@ -1,6 +1,97 @@
 # 👩🏻‍💻 PBP FLUTTER LAB 👩🏻‍💻
+# Tugas 7
 **Nama   : Hayfa Najma**
 
 **Kelas  : PBP - F**
 
 **NPM    : 2106653754**
+
+### 💡 Jelaskan apa yang dimaksud dengan _stateless widget_ dan _stateful widget_ dan jelaskan perbedaan dari keduanya.
+🪄 **_Stateless widget_** -> merupakan sebuah widget yang bersifat statis atau tidak dapat dirubah. Selama aplikasi berjalan, _stateless widget_ tidak akan berubah. Hal yang dimaksud tidak berubah adalah perubahan dalam variabel, _icon_, tombol atau pengambilan data tidak akan mengubah _state_ dari aplikasi. Sehingga widget ini cocok untuk digunakan pada tampilan aplikasi yang bersifat statis.
+
+🪄 **_Stateful widget_** -> merupakan sebuah widget yang bersifat dinamis atau dapat berubah. Berbeda dengan stateless widget, _stateful widget_ mampu merubah tampilan aplikasi, variabel, warna, tombol, dll. Selama aplikasi berjalan, _stateful widget_ akan secara dinamis merubah hal-hal tertentu pada aplikasi sesuai dengan kebutuhan _developer_. Salah satu method yang hanya bisa digunakan pada _stateful widget_ adalah `setState()`.
+
+🪄 **Perbedaan pada kedua widget ini terletak pada sifatnya:**
+
+   ✨ **_Stateless widget_**
+   
+   - Bersifat statis yang memiliki arti bahwa widget ini tidak akan merubah tampilan UI setelah program dijalankan dan selama program dijalankan.
+     
+   - Lebih cocok digunakan pada tampilan aplikasi yang sifatnya statis atau yang tidak memerlukan terjadinya perubahan tampilan.
+  
+   ✨ **_Stateful widget_**
+   
+   - Bersifat dinamis karena tampilan maupun hal lainnya dapat dijadikan sebuah hal untuk memicu terjadinya perubahan pada UI aplikasi.
+      
+   - Cocok digunakan untuk tampilan aplikasi yang bersifat dinamis atau tampilan aplikasi yang memerlukan adanya perubahan.
+      
+   - Penggunaan `setState()` hanya dapat diaplikasikan pada _stateful widget_.
+
+### 💡 Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya.
+
+Widget yang saya pakai pada proyek `counter_7` kali ini adalah :
+
+🪄 `Container` : Widget ini berfungsi sebagai pembungkus widget lain
+
+🪄 `FloatingActionButton`: Widget ini berfungsi untuk membuat sebuah tombol
+
+🪄 `Scaffold` : Widget ini memiliki peran untuk mengatur struktur _visual layout_ dengan mengimplementasikan material design
+
+🪄 `Text` : Widget ini berfungsi untuk menampilkan text pada aplikasi
+
+🪄 `Row` : Widget ini berfungsi untuk mengatur tata letak widget secara horizontal
+
+🪄 `Column` : Widget ini berfungsi untuk mengatur tata letak widget secara vertikal
+
+🪄 `MaterialApp` : adalah sebuah _parent_ dimana yang diapitnya akan menerapkan style _material design_
+
+🪄 `TextStyle` : Widget ini berfungsi untuk memberikan _styling_ pada text misalnya warna
+
+🪄 `Center` : Widget ini berfungsi untuk meletakkan widget didalamnya ke bagian tengah
+
+🪄 `Expanded` : Widget ini berfungsi untuk memperluas anak dari Row, Column atau flex sehingga mengisi ruang yang tersedia
+
+
+### 💡 Apa fungsi dari `setState()`? Jelaskan variabel apa saja yang dapat terdampak dengan fungsi tersebut.
+`setState()` merupakan sebuah fungsi yang berguna untuk memberitahu widget bahwa ada objek yang berubah pada State sehingga aplikasi akan memuat ulang widget tersebut sesuai dengan nilai yang sudah diubah. Variabel yang dapat terdampak pada fungsi tersebut adalah variabel yang sifanya mutable dan terdeklarasi secara global di sebuah class.
+
+### 💡 Jelaskan perbedaan antara `const` dengan `final`.
+Perbedaan antara `final` dan `const` yaitu:
+
+✨ **Inisialisasi**
+  - `const` -> dapat diinisialisasi hanya dengan nilai yang immutable pada saat waktu kompilasi.
+   - final` -> dapat diinisialisasi dengan nilai yang immutable / mutable  / dihitung pada saat waktu kompilasi.
+   
+✨ **Nilai**
+  - `const` -> objek yang berbeda dari tipe yang sama tidak dapat memiliki nilai const yang berbeda dalam variabel yang sama (anggota const harus statis).
+   - final` -> objek yang berbeda dari tipe yang sama dapat memiliki nilai final yang berbeda dalam variabel anggota yang sama.
+
+✨ **Inisialisasi nilai dari variabelnya**
+  - `const` mengharuskan variabel harus di inisialisasi pada saat kompilasi dan nilainya harus bersifat konstan dan secara eksplisit sehingga pada saat kompilasi variabel `const` sudah memiliki nilai.
+   - final` tidak mengharuskan variabel memiliki nilai secara eksplisit pada saat kompilasi.
+
+### 💡 Jelaskan bagaimana cara kamu mengimplementasikan _checklist_ di atas.
+
+1. Membuka Terminal atau Command Prompt.
+
+2. Membuat direktori baru pada file dan membuka `cmd` pada direktori tersebut.
+
+3. Menjalankan `flutter create counter_7` pada `cmd`.
+
+4. Membuka proyek tersebut pada `Android Studio`.
+
+5. Membuat variabel `counter` pada class `_MyHomePageState` untuk penampilan angka pada aplikasi dengan inisiasi awal 0.
+
+6. Membuat variabel `result` pada class `_MyHomePageState` untuk menampilkan output genap atau ganjil dengan inisiasi awal yaitu genap.
+
+7. Membuat method `_decrementCounter()`, method ini akan mengurangi nilai pada `counter`. Ketika `counter` akan dikurangi dan menghasilkan -1 maka `counter` akan diset menjadi 0 (0 merupakan nilai maksimal decrement `counter`). Proses decrement variabel dilakukan dalam fungsi `setState()`.
+
+8. Membuat method `_checkCounter()` untuk mengecek apakah nilai pada `counter` adalah ganjil atau genap. Jika ganjil, maka variabel `result` akan ditetapkan menjadi ganjil dan sebaliknya untuk genap. Proses pengecekan `counter` dan penetapan `result` dilakukan dalam fungsi `setState()`.
+
+9. Membuat method `showText()`, method ini akan menampilkan text `result` dan menyesuaikan warna yang akan ditampilkan.
+
+10. Menambah widget `FloatingActionButton` untuk tombol increment dan decrement dengan menyesuaikan fungsi `_decrementCounter()` dan `_incrementCounter()` ketika diklik.
+
+11. Menjalankan proyek program Flutter dengan `flutter run` pada `cmd`.
+
+12. Melakukan `add-commit-push` proyek ke repositori `pbp-flutter-lab`.
