@@ -50,6 +50,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
   String result = 'GENAP';
+  bool isShowButton = false;
 
   void _incrementCounter() {
     setState(() {
@@ -83,6 +84,16 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  // Untuk menyembunyikan tombol - apabila counter bernilai 0.
+  void _showButton(){
+    setState((){
+      if(_counter == 0){
+        isShowButton = false;
+      } else{
+        isShowButton = true;
+      }
+    });
+  }
   // Untuk memunculkan text sesuai result
   Text showTextIndicator() {
     // Jika hasil sama dengan GANJIL
@@ -148,17 +159,21 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            FloatingActionButton(onPressed: (){
+            Visibility(
+              visible: isShowButton,
+              child: FloatingActionButton(onPressed: (){
                 _decrementCounter();
                 _checkCounter();
+                _showButton();
               },
               tooltip: 'Decrement',
               child: const Icon(Icons.remove),
-            ),
+              )),
             Expanded(child: Container()),
             FloatingActionButton(onPressed: (){
                 _incrementCounter();
                 _checkCounter();
+                _showButton();
               },
               tooltip: 'Increment',
               child: const Icon(Icons.add),
@@ -169,3 +184,5 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+
+// Created By: Hayfa Najma
