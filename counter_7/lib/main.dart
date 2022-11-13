@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:counter_7/formBudget.dart';
+import 'package:counter_7/dataBudget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -120,10 +122,47 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
+      backgroundColor: Color(0xffCDFCF6),
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.
         title: Text(widget.title),
+      ),
+      drawer: Drawer(
+        child: Container(
+          margin: const EdgeInsets.only(top: 45.0),
+          child: Column(
+            children: [
+              ListTile(
+                title: const Text("counter_7", style: TextStyle(fontSize: 20)),
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => MyHomePage(title: 'Program Counter')),
+                  );
+                },
+              ),
+              ListTile(
+
+                title: const Text("Tambah Budget", style: TextStyle(fontSize: 20)),
+                onTap: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(builder: (context) => const FormBudget()),
+                  );
+                },
+              ),
+              ListTile(
+                title: const Text("Data Budget", style: TextStyle(fontSize: 20)),
+                onTap: () {
+                  Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => DataBudget()));
+                },
+              )
+            ],
+          ),
+        )
       ),
       body: Center(
         // Center is a layout widget. It takes a single child and positions it
@@ -160,21 +199,21 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Visibility(
-              visible: isShowButton,
-              child: FloatingActionButton(onPressed: (){
-                _decrementCounter();
-                _checkCounter();
-                _showButton();
-              },
-              tooltip: 'Decrement',
-              child: const Icon(Icons.remove),
-              )),
+                visible: isShowButton,
+                child: FloatingActionButton(onPressed: (){
+                  _decrementCounter();
+                  _checkCounter();
+                  _showButton();
+                },
+                  tooltip: 'Decrement',
+                  child: const Icon(Icons.remove),
+                )),
             Expanded(child: Container()),
             FloatingActionButton(onPressed: (){
-                _incrementCounter();
-                _checkCounter();
-                _showButton();
-              },
+              _incrementCounter();
+              _checkCounter();
+              _showButton();
+            },
               tooltip: 'Increment',
               child: const Icon(Icons.add),
             )
