@@ -3,6 +3,8 @@ import 'package:counter_7/dataBudget.dart';
 import 'package:counter_7/main.dart';
 import 'package:counter_7/budget.dart';
 
+import 'drawer.dart';
+
 class FormBudget extends StatefulWidget {
   const FormBudget({super.key});
 
@@ -36,47 +38,8 @@ class _FormBudgetState extends State<FormBudget> {
         appBar: AppBar(
           title: Text("Form Budget"),
         ),
-        drawer: Drawer(
-          child: Container(
-            margin: const EdgeInsets.only(top: 45.0),
-            child: Column(
-              children: [
-                ListTile(
-
-                  title: const Text("counter_7",
-                      style: TextStyle(fontSize: 20)),
-                  onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder:
-                          (context) => MyHomePage(title: 'Program Counter')),
-                    );
-                  },
-                ),
-                ListTile(
-                  title: const Text("Tambah Budget",
-                      style: TextStyle(fontSize: 20)),
-                  onTap: () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(builder:
-                          (context) => const FormBudget()),
-                    );
-                  },
-                ),
-                ListTile(
-                  title: const Text("Data Budget",
-                      style: TextStyle(fontSize: 20)),
-                  onTap: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder:
-                            (context) => DataBudget(myBudget: _budget,)));
-                  },
-                ),
-              ],
-            ),
-          )
+        drawer: MyDrawer(
+          theBudget: _budget,
         ),
         body: Form(
           key: _formKey,
@@ -96,24 +59,29 @@ class _FormBudgetState extends State<FormBudget> {
                     )
                   ),
                   Padding(
+                    // Menggunakan padding sebesar 8 pixels
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       // Membuat elemen input dengan tipe data String berupa judul budget
                       decoration: InputDecoration(
                           labelText: "Judul",
+                          // Menambahkan circular border agar lebih rapih
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           )),
+                      // Menambahkan behavior saat nama diketik
                       onChanged: (String? value) {
                         setState(() {
                           _judul = value!;
                         });
                       },
+                      // Menambahkan behavior saat data disimpan
                       onSaved: (String? value) {
                         setState(() {
                           _judul = value!;
                         });
                       },
+                      // Validator sebagai validasi form
                       validator: (String? value) {
                         // Untuk menghandle jika value input yang diisi kosong
                         if (value == null || value.isEmpty) {
@@ -124,25 +92,30 @@ class _FormBudgetState extends State<FormBudget> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    // Menggunakan padding sebesar 8 pixels
+                  padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       // Membuat elemen input dengan tipe data int berupa nominal budget
                       decoration: InputDecoration(
                           labelText: "Nominal",
+                          // Menambahkan circular border agar lebih rapih
                           border: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(5.0),
                           )),
+                      // Menambahkan behavior saat nama diketik
                       onChanged: (String? value) {
                         setState(() {
                           _nominal = value!;
                         });
                       },
+                      // Menambahkan behavior saat data disimpan
                       onSaved: (String? value) {
                         setState(() {
                           _nominal = value!;
                         });
                       },
+                      // Validator sebagai validasi form
                       validator: (String? value) {
                         // Untuk menghandle jika value input yang diisi kosong
                         if (value == null || value.isEmpty) {
