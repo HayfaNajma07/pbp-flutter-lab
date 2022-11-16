@@ -1,10 +1,19 @@
-import 'package:flutter/material.dart';
-
 class Budget {
   String judul;
-  String nominal;
+  int nominal;
   String jenis;
   DateTime date;
+  static final List<Budget> _listBudget = [];
 
-  Budget(this.judul, this.nominal, this.jenis, this.date);
+  Budget({required this.judul, required this.nominal, required this.jenis, required this.date});
+
+  static void addBudget(Budget item) {
+    _listBudget.add(item);
+  }
+
+  static List<Budget> getList() {
+    return _listBudget;
+  }
 }
+
+// Created By: Hayfa Najma

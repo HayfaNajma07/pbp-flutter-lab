@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:counter_7/formBudget.dart';
-import 'package:counter_7/dataBudget.dart';
 
 import 'drawer.dart';
 
@@ -124,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      backgroundColor: Color(0xffCDFCF6),
+      backgroundColor: const Color(0xffCDFCF6),
       appBar: AppBar(
         // Here we take the value from the MyHomePage object that was created by
         // the App.build method, and use it to set our appbar title.

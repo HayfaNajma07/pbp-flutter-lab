@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:counter_7/dataBudget.dart';
-import 'package:counter_7/main.dart';
 import 'package:counter_7/budget.dart';
 
 import 'drawer.dart';
@@ -13,10 +11,10 @@ class FormBudget extends StatefulWidget {
 }
 
 class _FormBudgetState extends State<FormBudget> {
-  List<Budget> _budget = [];
+  final List<Budget> _budget = [];
   final _formKey = GlobalKey<FormState>();
   String _judul = "";
-  String _nominal = "";
+  int _nominal = 0;
   String _jenis = "Pemasukan";
   List<String> listJenis = ["Pemasukan", "Pengeluaran"];
 
@@ -34,9 +32,9 @@ class _FormBudgetState extends State<FormBudget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xffCDFCF6),
+        backgroundColor: const Color(0xffCDFCF6),
         appBar: AppBar(
-          title: Text("Form Budget"),
+          title: const Text("Form Budget"),
         ),
         drawer: MyDrawer(
           theBudget: _budget,
@@ -51,12 +49,12 @@ class _FormBudgetState extends State<FormBudget> {
               child: Column(
                 children: [
                   Center(
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 30.0),
-                      child: const Text('Welcome! 😃',
-                        style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                      ),
-                    )
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 30.0),
+                        child: const Text('Welcome! 😃',
+                          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                        ),
+                      )
                   ),
                   Padding(
                     // Menggunakan padding sebesar 8 pixels
@@ -93,7 +91,7 @@ class _FormBudgetState extends State<FormBudget> {
                   ),
                   Padding(
                     // Menggunakan padding sebesar 8 pixels
-                  padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
                       keyboardType: TextInputType.number,
                       // Membuat elemen input dengan tipe data int berupa nominal budget
@@ -106,13 +104,13 @@ class _FormBudgetState extends State<FormBudget> {
                       // Menambahkan behavior saat nama diketik
                       onChanged: (String? value) {
                         setState(() {
-                          _nominal = value!;
+                          _nominal = int.parse(value!);
                         });
                       },
                       // Menambahkan behavior saat data disimpan
                       onSaved: (String? value) {
                         setState(() {
-                          _nominal = value!;
+                          _nominal = int.parse(value!);
                         });
                       },
                       // Validator sebagai validasi form
@@ -145,31 +143,31 @@ class _FormBudgetState extends State<FormBudget> {
                   ),
                   // Membuat date picker di dalam list tile
                   Center(
-                    child: Container(
-                      margin: const EdgeInsets.all(30.0),
-                      child: ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all(Colors.blue),
+                      child: Container(
+                        margin: const EdgeInsets.all(30.0),
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor: MaterialStateProperty.all(Colors.blue),
 
-                          padding: MaterialStateProperty.all(
-                            const EdgeInsets.all(12.0),
+                            padding: MaterialStateProperty.all(
+                              const EdgeInsets.all(12.0),
+                            ),
                           ),
-                        ),
-                        onPressed: () {
-                          showDatePicker(
-                            context: context,
-                            initialDate: DateTime.now(),
-                            firstDate: DateTime(2000),
-                            lastDate: DateTime(2025),
-                          ).then((value) {
-                            setState(() {
-                              _date = value;
+                          onPressed: () {
+                            showDatePicker(
+                              context: context,
+                              initialDate: DateTime.now(),
+                              firstDate: DateTime(2000),
+                              lastDate: DateTime(2025),
+                            ).then((value) {
+                              setState(() {
+                                _date = value;
+                              });
                             });
-                          });
-                        },
-                        child: Text(getText(), style: const TextStyle(fontSize: 19)),
-                      ),
-                    )
+                          },
+                          child: Text(getText(), style: const TextStyle(fontSize: 19)),
+                        ),
+                      )
 
                   )
                 ],
@@ -190,14 +188,7 @@ class _FormBudgetState extends State<FormBudget> {
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                setState(() {
-                  print("Judul: $_judul");
-                  print("Nominal: $_nominal");
-                  print("Jenis: $_jenis");
-                  Budget newBudget = Budget(_judul, _nominal, _jenis, _date!);
-                  _budget.add(newBudget);
-                  print(_budget.length);
-                });
+                Budget.addBudget(Budget(judul: _judul, nominal: _nominal, jenis: _jenis, date: _date!));
                 showDialog(
                   context: context,
                   builder: (context) {
@@ -206,49 +197,47 @@ class _FormBudgetState extends State<FormBudget> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       elevation: 15,
-                      child: Container(
-                        child: ListView(
-                          padding: const EdgeInsets.only(top: 20, bottom: 20),
-                          shrinkWrap: true,
-                          children: <Widget>[
-                            Center(
-                                child: Column(
-                                  children: [
-                                    const Text(
-                                      "Data berhasil disimpan!",
-                                      style: TextStyle(
-                                        fontSize: 20,
-                                        height: 3,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                      child: ListView(
+                        padding: const EdgeInsets.only(top: 20, bottom: 20),
+                        shrinkWrap: true,
+                        children: <Widget>[
+                          Center(
+                              child: Column(
+                                children: [
+                                  const Text(
+                                    "Data berhasil disimpan!",
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      height: 3,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                    Text("Judul: $_judul", style: const TextStyle(
+                                  ),
+                                  Text("Judul: $_judul", style: const TextStyle(
                                       fontSize: 15, height: 2
-                                    ),),
-                                    Text("Nominal: $_nominal", style: const TextStyle(
+                                  ),),
+                                  Text("Nominal: $_nominal", style: const TextStyle(
                                       fontSize: 15, height: 2
-                                    ),),
-                                    Text("Jenis: $_jenis", style: const TextStyle(
+                                  ),),
+                                  Text("Jenis: $_jenis", style: const TextStyle(
                                       fontSize: 15, height: 2
-                                    )),
-                                  ],
-                                )),
-                            const SizedBox(height: 20),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context);
-                                setState(() {
-                                  _judul = "";
-                                  _nominal = "";
-                                  _jenis = "Pemasukan";
-                                });
-                              },
-                              child: const Text('Kembali', style: TextStyle(
-                                fontSize: 19,
+                                  )),
+                                ],
                               )),
-                            ),
-                          ],
-                        ),
+                          const SizedBox(height: 20),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                              setState(() {
+                                _judul = "";
+                                _nominal = 0;
+                                _jenis = "Pemasukan";
+                              });
+                            },
+                            child: const Text('Kembali', style: TextStyle(
+                              fontSize: 19,
+                            )),
+                          ),
+                        ],
                       ),
                     );
                   },
@@ -266,3 +255,5 @@ class _FormBudgetState extends State<FormBudget> {
         ));
   }
 }
+
+// Created By: Hayfa Najma
