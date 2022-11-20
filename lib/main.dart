@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'page/drawer.dart';
+import 'drawer/drawer.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,15 +15,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(title: 'Program Counter'),
@@ -50,7 +41,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+  int _counter = 0; //Private variable
   String result = 'GENAP';
   bool isShowButton = false;
 
@@ -87,15 +78,16 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   // Untuk menyembunyikan tombol - apabila counter bernilai 0.
-  void _showButton(){
-    setState((){
-      if(_counter == 0){
+  void _showButton() {
+    setState(() {
+      if (_counter == 0) {
         isShowButton = false;
-      } else{
+      } else {
         isShowButton = true;
       }
     });
   }
+
   // Untuk memunculkan text sesuai result
   Text showTextIndicator() {
     // Jika hasil sama dengan GANJIL
@@ -157,7 +149,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(left: 35, bottom: 20, right: 10),
         child: Row(
@@ -165,20 +156,22 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             Visibility(
                 visible: isShowButton,
-                child: FloatingActionButton(onPressed: (){
-                  _decrementCounter();
-                  _checkCounter();
-                  _showButton();
-                },
+                child: FloatingActionButton(
+                  onPressed: () {
+                    _decrementCounter();
+                    _checkCounter();
+                    _showButton();
+                  },
                   tooltip: 'Decrement',
                   child: const Icon(Icons.remove),
                 )),
             Expanded(child: Container()),
-            FloatingActionButton(onPressed: (){
-              _incrementCounter();
-              _checkCounter();
-              _showButton();
-            },
+            FloatingActionButton(
+              onPressed: () {
+                _incrementCounter();
+                _checkCounter();
+                _showButton();
+              },
               tooltip: 'Increment',
               child: const Icon(Icons.add),
             )

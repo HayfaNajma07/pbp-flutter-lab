@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:counter_7/model/budget.dart';
 
-import 'drawer.dart';
+import '../drawer/drawer.dart';
 
 class FormBudget extends StatefulWidget {
   const FormBudget({super.key});
@@ -21,10 +21,10 @@ class _FormBudgetState extends State<FormBudget> {
   // create variable for date from date picker
   DateTime? _date;
 
-  String getText(){
-    if (_date == null){
+  String getText() {
+    if (_date == null) {
       return 'Pilih Tanggal';
-    } else{
+    } else {
       return '${_date?.month}/${_date?.day}/${_date?.year}';
     }
   }
@@ -42,7 +42,6 @@ class _FormBudgetState extends State<FormBudget> {
         body: Form(
           key: _formKey,
           child: SingleChildScrollView(
-
             child: Container(
               margin: const EdgeInsets.all(30.0),
               padding: const EdgeInsets.all(20.0),
@@ -51,11 +50,12 @@ class _FormBudgetState extends State<FormBudget> {
                   Center(
                       child: Container(
                         margin: const EdgeInsets.only(bottom: 30.0),
-                        child: const Text('Welcome! 😃',
-                          style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                        ),
-                      )
-                  ),
+                        child: const Text(
+                        'Welcome! 😃',
+                        style:
+                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                      ),
+                  )),
                   Padding(
                     // Menggunakan padding sebesar 8 pixels
                     padding: const EdgeInsets.all(8.0),
@@ -144,32 +144,30 @@ class _FormBudgetState extends State<FormBudget> {
                   // Membuat date picker di dalam list tile
                   Center(
                       child: Container(
-                        margin: const EdgeInsets.all(30.0),
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(Colors.blue),
-
-                            padding: MaterialStateProperty.all(
-                              const EdgeInsets.all(12.0),
-                            ),
-                          ),
-                          onPressed: () {
-                            showDatePicker(
-                              context: context,
-                              initialDate: DateTime.now(),
-                              firstDate: DateTime(2000),
-                              lastDate: DateTime(2025),
-                            ).then((value) {
-                              setState(() {
-                                _date = value;
-                              });
-                            });
-                          },
-                          child: Text(getText(), style: const TextStyle(fontSize: 19)),
+                    margin: const EdgeInsets.all(30.0),
+                    child: ElevatedButton(
+                      style: ButtonStyle(
+                        backgroundColor: MaterialStateProperty.all(Colors.blue),
+                        padding: MaterialStateProperty.all(
+                          const EdgeInsets.all(12.0),
                         ),
-                      )
-
-                  )
+                      ),
+                      onPressed: () {
+                        showDatePicker(
+                          context: context,
+                          initialDate: DateTime.now(),
+                          firstDate: DateTime(2000),
+                          lastDate: DateTime(2025),
+                        ).then((value) {
+                          setState(() {
+                            _date = value;
+                          });
+                        });
+                      },
+                      child:
+                          Text(getText(), style: const TextStyle(fontSize: 19)),
+                    ),
+                  ))
                 ],
               ),
             ),
@@ -188,7 +186,11 @@ class _FormBudgetState extends State<FormBudget> {
             onPressed: () {
               if (_formKey.currentState!.validate()) {
                 _formKey.currentState!.save();
-                Budget.addBudget(Budget(judul: _judul, nominal: _nominal, jenis: _jenis, date: _date!));
+                Budget.addBudget(Budget(
+                    judul: _judul,
+                    nominal: _nominal,
+                    jenis: _jenis,
+                    date: _date!));
                 showDialog(
                   context: context,
                   builder: (context) {
@@ -203,26 +205,28 @@ class _FormBudgetState extends State<FormBudget> {
                         children: <Widget>[
                           Center(
                               child: Column(
-                                children: [
-                                  const Text(
-                                    "Data berhasil disimpan!",
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      height: 3,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
-                                  Text("Judul: $_judul", style: const TextStyle(
-                                      fontSize: 15, height: 2
-                                  ),),
-                                  Text("Nominal: $_nominal", style: const TextStyle(
-                                      fontSize: 15, height: 2
-                                  ),),
-                                  Text("Jenis: $_jenis", style: const TextStyle(
-                                      fontSize: 15, height: 2
-                                  )),
-                                ],
-                              )),
+                            children: [
+                              const Text(
+                                "Data berhasil disimpan!",
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  height: 3,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                              Text(
+                                "Judul: $_judul",
+                                style: const TextStyle(fontSize: 15, height: 2),
+                              ),
+                              Text(
+                                "Nominal: $_nominal",
+                                style: const TextStyle(fontSize: 15, height: 2),
+                              ),
+                              Text("Jenis: $_jenis",
+                                  style:
+                                      const TextStyle(fontSize: 15, height: 2)),
+                            ],
+                          )),
                           const SizedBox(height: 20),
                           TextButton(
                             onPressed: () {
@@ -233,9 +237,10 @@ class _FormBudgetState extends State<FormBudget> {
                                 _jenis = "Pemasukan";
                               });
                             },
-                            child: const Text('Kembali', style: TextStyle(
-                              fontSize: 19,
-                            )),
+                            child: const Text('Kembali',
+                                style: TextStyle(
+                                  fontSize: 19,
+                                )),
                           ),
                         ],
                       ),
