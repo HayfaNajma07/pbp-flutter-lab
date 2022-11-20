@@ -99,12 +99,12 @@ Perbedaan antara `final` dan `const` yaitu:
 # 👩🏻‍💻 PBP FLUTTER LAB 👩🏻‍💻
 # Tugas 8
 
-## Perbedaan `Navigator.push` dan `Navigator.pushReplacement`
+### 💡 Perbedaan `Navigator.push` dan `Navigator.pushReplacement`
 
 -   `Navigator.push`: sebuah navigator routing yang berfungsi untuk menambahkan route baru ke stack navigasi
 -   `Navigator.pushReplacement`: sebuah navigator routing yang berfungsi untuk mengganti route yang ada di stack navigasi dengan route baru
 
-## Widget yang dipakai pada proyek dan fungsinya
+### 💡 Widget yang dipakai pada proyek dan fungsinya
 
 -   Container: widget yang berfungsi sebagai _container_ untuk menampung widget lainnya
 -   Form: widget yang berfungsi untuk membuat form
@@ -115,18 +115,18 @@ Perbedaan antara `final` dan `const` yaitu:
 -   Column : Widget ini berfungsi untuk mengatur tata letak widget
 -   Scaffold : Widget ini memiliki peran untuk mengatur struktur visual layout dengan mengimplementasikan material design
 
-## Jenis event pada Flutter
+### 💡 Jenis event pada Flutter
 
 -   onTap: event yang terjadi ketika widget di tap
 -   onPressed: event yang terjadi ketika widget di tekan
 -   onChanged: event yang terjadi ketika widget diubah
 -   onSaved: event yang terjadi ketika widget disimpan
 
-##  Jelaskan bagaimana cara kerja Navigator dalam "mengganti" halaman dari aplikasi Flutter.
+### 💡 Jelaskan bagaimana cara kerja Navigator dalam "mengganti" halaman dari aplikasi Flutter.
 
 Pada dasarnya Navigator dalam aplikasi Flutter memiliki mekanisme pergantian halaman dengan menggunakan prinsip stack. Navigator mengatur stack of route dan menyediakan dua cara untuk mengatur stack of route, yaitu declarative dan imperative. Declarative menggunakan `Navigator.pages`, sedangkan imperative `Navigator.push` dan `Navigator.pop`. Halaman yang akan dimuat akan di-push pada top of stack, sedangkan jika ingin berpindah ke halaman sebelumnya, Navigator akan melakukan pop pada stack, sehingga page yang saat ini dilihat akan dihapus dari stack dan tampilan pengguna akan berganti ke halaman sebelumnya.
 
-## Implementasi checklist
+### 💡 Implementasi checklist
 1. Membuat class drawer.dart dimana class ini akan menjadi Navbar untuk seluruh page
 2. Membuat tiga tombol navigasi pada drawer
 2. Membuat halaman form
