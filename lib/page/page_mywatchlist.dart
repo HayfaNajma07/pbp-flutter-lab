@@ -1,7 +1,5 @@
 import 'package:counter_7/page/detail_mywatchlist.dart';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 import 'package:counter_7/model/mywatchlist.dart';
 import 'package:counter_7/drawer/drawer.dart';
 
@@ -95,10 +93,15 @@ class _MyWatchListPageState extends State<MyWatchListPage> {
                                 width: 30,
                                 // Menambahkan checkbox pada setiap watchlist pada halaman mywatchlist.
                                 child: CheckboxListTile(
-                                  value: snapshot.data![index].fields.watched == "Yes",
+                                    value : snapshot.data![index].fields.watched ==  "Yes" ? true : false,
                                     onChanged: (bool?value) {
                                       setState(() {
-                                        snapshot.data![index].fields.watched = !snapshot.data![index].fields.watched;});
+                                        if (value!){
+                                          snapshot.data![index].fields.watched = "Yes";
+                                        }else{
+                                          snapshot.data![index].fields.watched == "No";
+                                        }
+                                      });
                                     }),
                               )
                             ],
