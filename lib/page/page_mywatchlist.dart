@@ -5,6 +5,8 @@ import 'dart:convert';
 import 'package:counter_7/model/mywatchlist.dart';
 import 'package:counter_7/drawer/drawer.dart';
 
+import '../dataSource/mywatchlist_remote_dataSource.dart';
+
 class MyWatchListPage extends StatefulWidget {
   const MyWatchListPage({Key? key}) : super(key: key);
 
@@ -21,29 +23,6 @@ class _MyWatchListPageState extends State<MyWatchListPage> {
     myWatchList = fetchMyWatchList();
   }
 
-  Future<List<MyWatchList>> fetchMyWatchList() async {
-    var url = Uri.parse('https://tugashayfa.herokuapp.com/mywatchlist/json/');
-    var response = await http.get(
-      url,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    );
-
-    // Melakukan decode response menjadi bentuk json
-    var data = jsonDecode(utf8.decode(response.bodyBytes));
-
-    // Melakukan konversi data json menjadi object ToDo
-    List<MyWatchList> listMyWatchList = [];
-    for (var d in data) {
-      if (d != null) {
-        listMyWatchList.add(MyWatchList.fromJson(d));
-      }
-    }
-    return listMyWatchList;
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,6 +30,7 @@ class _MyWatchListPageState extends State<MyWatchListPage> {
         appBar: AppBar(
           title: const Text('My Watch List'),
         ),
+        // Drawer navbar
         drawer: MyDrawer(),
         body: FutureBuilder(
             future: myWatchList,
@@ -85,14 +65,22 @@ class _MyWatchListPageState extends State<MyWatchListPage> {
                           margin: const EdgeInsets.symmetric(
                               horizontal: 16, vertical: 12),
                           padding: const EdgeInsets.all(20.0),
+                          // Menambahkan warna untuk outline pada setiap mywatchlist pada halaman mywatchlist berdasarkan status ditonton
                           decoration: BoxDecoration(
+                            border: Border.all(
+                              width: 3.5,
+                              color: ((snapshot.data![index].fields.watched == "Yes")
+                                  ? Colors.deepPurple
+                                  : Colors.red)
+                              ),
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(15.0),
                               boxShadow: const [
                                 BoxShadow(
-                                    color: Colors.black, blurRadius: 2.0)
+                                  color: Colors.grey, blurRadius: 0.5)
                               ]),
-                          child: Row(
+                        child:
+                          Row(
                             children: [
                               Expanded(
                                 child: Text(
@@ -103,6 +91,16 @@ class _MyWatchListPageState extends State<MyWatchListPage> {
                                   ),
                                 ),
                               ),
+                              SizedBox(
+                                width: 30,
+                                // Menambahkan checkbox pada setiap watchlist pada halaman mywatchlist.
+                                child: CheckboxListTile(
+                                  value: snapshot.data![index].fields.watched == "Yes",
+                                    onChanged: (bool?value) {
+                                      setState(() {
+                                        snapshot.data![index].fields.watched = !snapshot.data![index].fields.watched;});
+                                    }),
+                              )
                             ],
                           ),
                         ),
