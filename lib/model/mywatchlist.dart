@@ -41,7 +41,7 @@ class Fields {
 
   String title;
   String release_date;
-  String watched;
+  bool watched;
   int rating;
   String review;
 

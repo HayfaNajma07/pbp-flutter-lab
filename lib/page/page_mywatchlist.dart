@@ -67,7 +67,7 @@ class _MyWatchListPageState extends State<MyWatchListPage> {
                           decoration: BoxDecoration(
                             border: Border.all(
                               width: 3.5,
-                              color: ((snapshot.data![index].fields.watched == "Yes")
+                              color: ((snapshot.data![index].fields.watched)
                                   ? Colors.deepPurple
                                   : Colors.red)
                               ),
@@ -93,14 +93,13 @@ class _MyWatchListPageState extends State<MyWatchListPage> {
                                 width: 30,
                                 // Menambahkan checkbox pada setiap watchlist pada halaman mywatchlist.
                                 child: CheckboxListTile(
-                                    value : snapshot.data![index].fields.watched ==  "Yes" ? true : false,
+                                    value : snapshot.data![index].fields.watched,
                                     onChanged: (bool?value) {
                                       setState(() {
-                                        if (value!){
-                                          snapshot.data![index].fields.watched = "Yes";
-                                        }else{
-                                          snapshot.data![index].fields.watched == "No";
-                                        }
+                                        snapshot.data![index].fields
+                                            .watched =
+                                        !snapshot.data![index].fields
+                                            .watched;
                                       });
                                     }),
                               )

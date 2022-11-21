@@ -74,7 +74,7 @@ class _MyWatchDetailState extends State<MyWatchDetail> {
                                   fontSize: 20, fontWeight: FontWeight.bold)),
                           TextSpan(
                               style: TextStyle(fontSize: 20),
-                              text: (widget.myWatch.fields.watched == "Yes")
+                              text: (widget.myWatch.fields.watched)
                                   ? "watched\n"
                                   : "unwatched\n"),
                           // Review
