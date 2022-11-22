@@ -28,6 +28,7 @@ class _MyDrawerState extends State<MyDrawer> {
                       MaterialPageRoute(builder: (context) => const MyApp()));
                 },
               ),
+              // Bagian drawer tambah budget
               ListTile(
                 title:
                     const Text("Tambah Budget", style: TextStyle(fontSize: 20)),
@@ -38,6 +39,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   );
                 },
               ),
+              // Bagian drawer data budget
               ListTile(
                 title: const Text("Data Budget", style: TextStyle(fontSize: 20)),
                 onTap: () {
@@ -47,6 +49,7 @@ class _MyDrawerState extends State<MyDrawer> {
                   );
                 },
               ),
+              // Bagian drawer my watchlist
               ListTile(
                 title: 
                   const Text("My Watch List", style: TextStyle(fontSize: 20)),

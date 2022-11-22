@@ -131,3 +131,37 @@ Pada dasarnya Navigator dalam aplikasi Flutter memiliki mekanisme pergantian hal
 2. Membuat tiga tombol navigasi pada drawer
 2. Membuat halaman form
 3. Membuat halaman data budget
+
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------
+# 👩🏻‍💻 PBP FLUTTER LAB 👩🏻‍💻
+# Tugas 9
+
+### 💡 Apakah bisa kita melakukan pengambilan data JSON tanpa membuat model terlebih dahulu? Jika iya, apakah hal tersebut lebih baik daripada membuat model sebelum melakukan pengambilan data JSON?
+Kita dapat melakukan pengambilan data JSON tanpa membuat model terlebih dahulu. Secara behavioral, JSON sendiri merupakan suatu object dalam notasi Javascirpt di mana pada bahasa Dart, hal tersebut ekuivalen dengan Map di mana object yang terdiri dari key dengan value pair. Namun, pengambilan data JSON tanpa melakukan konversi ke dalam suatu model bukan merupakan best practice dalam pengimplementasiannya. Konversi data JSON ke dalam suatu model bertujuan untuk meminimalisir kesalahan pengambilan atau pengiriman data melalui http request yang akan ditampilkan pada sisi UI aplikasi.
+
+### 💡 Sebutkan widget apa saja yang kamu pakai di proyek kali ini dan jelaskan fungsinya.
+-   Container: widget yang berfungsi sebagai _container_ untuk menampung widget lainnya
+-   Form: widget yang berfungsi untuk membuat form
+-   Column: widget yang berfungsi untuk menampung widget lainnya secara vertikal
+-   ListTile: row yang menampung teks sebagai leading dan trailing
+-   Drawer: widget yang berfungsi untuk membuat _drawer_ di sisi kiri layar (untuk navigasi)
+-   Scaffold : Widget ini memiliki peran untuk mengatur struktur visual layout dengan mengimplementasikan material design
+-   FutureBuilder, widget untuk menggenerate array of widget berdasarkan suatu snapshot dengan memperhatikan teraksi snapshot terbaru
+-   Padding : berufngsi untuk memebrikan jarak pada widget
+
+### 💡 Jelaskan mekanisme pengambilan data dari json hingga dapat ditampilkan pada Flutter.
+-   Membuat sebuah function http request dengan method `GET` secara async untuk mengambil data ke pihak eksternal
+-   Pada function tersebut lakukan parsing dengan `jsonDecode()` untuk mengubah response String menjadi JSON
+-   Konversi object JSON ke dalam suatu Model object
+-   Gunakan widget `FutureBuilder` untuk menampilkan widget-widget dengan snapshot data terbaru yang telah dikonversi menjadi sebuah object
+
+### 💡  Jelaskan bagaimana cara kamu mengimplementasikan checklist di atas.
+1. Menambahkan tombol navigasi pada drawer untuk ke halaman mywatchlist di drawer.dart.
+2. Membuat mywatchlist.dart yang berisi model mywatchlist.
+3. Membuat page_mywatchlist.dart untuk bagian halaman mywatchlist yang berisi semua watch list yang ada pada endpoint JSON di Django Tugas 3 sebelumnya.
+4. Membuat navigasi dari setiap judul watch list ke halaman detail
+5. Membuat detail_mywatchlist.dart untuk bagian halaman detail untuk setiap mywatchlist yang ada pada daftar tersebut. Halaman ini menampilkan judul, release date, rating, review, dan status (sudah ditonton/belum).
+6. Membuat tombol `back` untuk kembali ke daftar mywatchlist
+Membuat halaman form
+7. Menambahkan checkbox pada setiap watchlist pada halaman mywatchlist. Dimana checkbox akan tercentang jika status ditonton bernilai true dan tidak jika bernilai false. Jika checkbox ditekan, maka status ditonton akan berubah. (Menggunakan CheckboxListTile)
+8. Menambahkan warna untuk outline pada setiap mywatchlist pada halaman mywatchlist berdasarkan status ditonton. (Menggunakan color di BoxDecoration)

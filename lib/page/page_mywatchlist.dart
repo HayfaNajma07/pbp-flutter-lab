@@ -52,6 +52,7 @@ class _MyWatchListPageState extends State<MyWatchListPage> {
                       itemCount: snapshot.data!.length,
                       itemBuilder: (_, index) => GestureDetector(
                         onTap: () {
+                          // Navigasi dari setiap judul watch list ke halaman detail
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
