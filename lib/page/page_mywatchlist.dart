@@ -36,6 +36,7 @@ class _MyWatchListPageState extends State<MyWatchListPage> {
               if (snapshot.data == null) {
                 return const Center(child: CircularProgressIndicator());
               } else {
+                // Jika tidak ada data mywatchlist
                 if (!snapshot.hasData) {
                   return Column(
                     children: const [
@@ -113,3 +114,5 @@ class _MyWatchListPageState extends State<MyWatchListPage> {
             }));
   }
 }
+
+// Created By: Hayfa Najma

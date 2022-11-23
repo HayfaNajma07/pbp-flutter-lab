@@ -7,6 +7,7 @@ class Budget {
 
   Budget({required this.judul, required this.nominal, required this.jenis, required this.date});
 
+  // Menambahkan item budget ke list budget
   static void addBudget(Budget item) {
     _listBudget.add(item);
   }

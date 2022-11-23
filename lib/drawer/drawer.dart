@@ -18,9 +18,11 @@ class _MyDrawerState extends State<MyDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       child: Container(
-        child: SafeArea( // Agar bagian atas tampilan layar ada jaraknya
+        // Agar bagian atas tampilan layar ada jaraknya
+        child: SafeArea( 
           child: Column(
             children: [
+              // Bagian drawer counter_7
               ListTile(
                 title: const Text("counter_7", style: TextStyle(fontSize: 20)),
                 onTap: () {
