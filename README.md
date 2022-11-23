@@ -148,6 +148,7 @@ Kita dapat melakukan pengambilan data JSON tanpa membuat model terlebih dahulu. 
 -   Scaffold : Widget ini memiliki peran untuk mengatur struktur visual layout dengan mengimplementasikan material design
 -   FutureBuilder, widget untuk menggenerate array of widget berdasarkan suatu snapshot dengan memperhatikan teraksi snapshot terbaru
 -   Padding : berufngsi untuk memebrikan jarak pada widget
+-   TextStyle : Widget ini berfungsi untuk memberikan _styling_ pada text misalnya warna
 
 ### 💡 Jelaskan mekanisme pengambilan data dari json hingga dapat ditampilkan pada Flutter.
 -   Membuat sebuah function http request dengan method `GET` secara async untuk mengambil data ke pihak eksternal
